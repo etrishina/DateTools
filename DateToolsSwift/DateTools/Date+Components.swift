@@ -24,10 +24,10 @@ public extension Date {
      *
      */
     func component(_ component: Calendar.Component) -> Int {
-		let calendar = Calendar.autoupdatingCurrent
-		return calendar.component(component, from: self)
-	}
-	
+        let calendar = Date.autoupdatingCurrentCalendar
+        return calendar.component(component, from: self)
+    }
+
     /**
      *  Convenient accessor of the date's `Calendar` components ordinality.
      *
@@ -38,10 +38,10 @@ public extension Date {
      *
      */
     func ordinality(of smaller: Calendar.Component, in larger: Calendar.Component) -> Int? {
-		let calendar = Calendar.autoupdatingCurrent
-		return calendar.ordinality(of: smaller, in: larger, for: self)
-	}
-	
+        let calendar = Date.autoupdatingCurrentCalendar
+        return calendar.ordinality(of: smaller, in: larger, for: self)
+    }
+
     /**
      *  Use calendar components to determine how many units of a smaller component are inside 1 larger unit.
      *
@@ -54,9 +54,8 @@ public extension Date {
      *  - returns: The number of smaller units required to equal in 1 larger unit, given the date called on
      *
      */
-    @available(*, deprecated, message: "Calendar component hashes no longer yield relevant values and will always return nil. The function is deprecated and will be removed soon.")
     func unit(of smaller: Calendar.Component, in larger: Calendar.Component) -> Int? {
-		let calendar = Calendar.autoupdatingCurrent
+        let calendar = Date.autoupdatingCurrentCalendar
         var units = 1
         var unitRange: Range<Int>?
         if larger.hashValue < smaller.hashValue {
@@ -225,7 +224,7 @@ public extension Date {
      *  Convenience getter for the date's `daysInMonth` component
      */
     var daysInMonth: Int {
-        let calendar = Calendar.autoupdatingCurrent
+        let calendar = Date.autoupdatingCurrentCalendar
         let days = calendar.range(of: .day, in: .month, for: self)
         return days!.count
     }
@@ -299,26 +298,26 @@ public extension Date {
      *  Determine if date is within the current day
      */
     var isToday: Bool {
-		let calendar = Calendar.autoupdatingCurrent
-		return calendar.isDateInToday(self)
-	}
-	
+        let calendar = Date.autoupdatingCurrentCalendar
+        return calendar.isDateInToday(self)
+    }
+
     /**
      *  Determine if date is within the day tomorrow
      */
     var isTomorrow: Bool {
-		let calendar = Calendar.autoupdatingCurrent
+        let calendar = Date.autoupdatingCurrentCalendar
         return calendar.isDateInTomorrow(self)
-	}
-	
+    }
+
     /**
      *  Determine if date is within yesterday
      */
     var isYesterday: Bool {
-		let calendar = Calendar.autoupdatingCurrent
+        let calendar = Date.autoupdatingCurrentCalendar
         return calendar.isDateInYesterday(self)
-	}
-	
+    }
+
     /**
      *  Determine if date is in a weekend
      */
